@@ -3,7 +3,7 @@ pipelines:
   expense-create:
     group: Terraform
     environments:
-      - QA
+      - dev
     label_template: ${COUNT}
     lock_behavior: none
     display_order: -1
