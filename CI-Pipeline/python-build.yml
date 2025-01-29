@@ -30,7 +30,6 @@ pipelines:
       - PROD:
           fetch_materials: true
           environment_variables: { env: prod, action: apply }
-          approval: {type: manual}
           jobs:
             terraform:
               tasks:
