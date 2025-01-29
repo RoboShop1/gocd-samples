@@ -6,15 +6,10 @@ pipelines:
     lock_behavior: none
     display_order: -1
     materials:
-      pipelineA:
+      pipeline-A:
         pipeline: pipeline-A
         stage: DEV
         auto_update: true
-      git-a66247d:
-        git: https://github.com/raghudevopsb79/expense-terraform
-        shallow_clone: true
-        auto_update: true
-        branch: main
     stages:
       - DEV:
           fetch_materials: true
