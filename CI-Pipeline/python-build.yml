@@ -1,45 +1,33 @@
 format_version: 10
 pipelines:
-  python-ci:
-    group: CI
+  expense-create:
+    group: Terraform
     label_template: ${COUNT}
     lock_behavior: none
     display_order: -1
     materials:
       git-a66247d:
-        git: https://github.com/raghudevopsb80/roboshop-payment.git
+        git: https://github.com/raghudevopsb79/expense-terraform
         shallow_clone: true
         auto_update: true
         branch: main
     stages:
-      - build:
-          clean_working_directory: true
+      - DEV:
+          fetch_materials: true
+          environment_variables: { env: dev, action: apply }
+          approval: {type: manual}
           jobs:
-            - build-job:
-                environment_variables:
-                  NODE_ENV: development
-                tasks:
-                  - exec:
-                      command: npm
-                      arguments: ["install"]
-                  - exec:
-                      command: npm
-                      arguments: ["run", "build"]
-      - test:
-          clean_working_directory: true
+            terraform:
+              tasks:
+                - exec: { command: bash , arguments: [ "run.sh"] }
+
+      - PROD:
+          fetch_materials: true
+          environment_variables: { env: prod, action: apply }
+          approval: {type: manual}
           jobs:
-            - test-job:
-                tasks:
-                  - exec:
-                      command: npm
-                      arguments: ["run", "test"]
-      - package:
-          clean_working_directory: true
-          jobs:
-            - package-job:
-                tasks:
-                  - exec:
-                      command: docker
-                      arguments: ["build", "-t", "sample", "."]
+            terraform:
+              tasks:
+                - exec: { command: bash , arguments: [ "run.sh"] }
 
 
