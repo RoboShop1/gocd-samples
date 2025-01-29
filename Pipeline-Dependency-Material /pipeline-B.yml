@@ -6,9 +6,9 @@ pipelines:
     lock_behavior: none
     display_order: -1
     materials:
-      pipeline-A:
-        pipeline: pipelineA
-        stage: DEV
+      pipeline-A:   # We can give any name
+        pipeline: pipelineA        # This has to be matched #
+        stage: DEV                # Stage also matches from pipelineA
         auto_update: true
       git-a66247d:
         git: https://github.com/raghudevopsb79/expense-terraform
@@ -19,6 +19,7 @@ pipelines:
       - DEV:
           fetch_materials: true
           environment_variables: { env: dev, action: apply }
+          approval: { type: manual }
           jobs:
             pipeline-B:
               tasks:
