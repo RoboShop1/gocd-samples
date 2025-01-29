@@ -20,23 +20,26 @@ pipelines:
                   NODE_ENV: development
                 tasks:
                   - exec:
-                      command: echo
-                      arguments: [ "npm", "install" ]
+                      command: npm
+                      arguments: ["install"]
                   - exec:
-                      command: echo
-                      arguments: [ "npm","run", "build" ]
+                      command: npm
+                      arguments: ["run", "build"]
       - test:
           clean_working_directory: true
           jobs:
             - test-job:
                 tasks:
                   - exec:
-                      command: echo
-                      arguments: [  "npm", "run", "test" ]
+                      command: npm
+                      arguments: ["run", "test"]
       - package:
           clean_working_directory: true
           jobs:
             - package-job:
                 tasks:
-                  - exec: {command: echo , arguments:["docker","build","-t","smaple","."] }
+                  - exec:
+                      command: docker
+                      arguments: ["build", "-t", "sample", "."]
+
 
