@@ -1,0 +1,42 @@
+format_version: 10
+pipelines:
+  python-ci:
+    group: CI
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-a66247d:
+        git: https://github.com/raghudevopsb80/roboshop-payment.git
+        shallow_clone: true
+        auto_update: true
+        branch: main
+    stages:
+      - build:
+          clean_working_directory: true
+          jobs:
+            - build-job:
+                environment_variables:
+                  NODE_ENV: development
+                tasks:
+                  - exec:
+                      command: echo
+                      arguments: [ "npm", "install" ]
+                  - exec:
+                      command: echo
+                      arguments: [ "npm","run", "build" ]
+      - test:
+          clean_working_directory: true
+          jobs:
+            - test-job:
+                tasks:
+                  - exec:
+                      command: echo
+                      arguments: [  "npm", "run", "test" ]
+      - package:
+          clean_working_directory: true
+          jobs:
+            - package-job:
+                tasks:
+                  - exec: {command: echo , arguments:["docker","build","-t","smaple","."] }
+
