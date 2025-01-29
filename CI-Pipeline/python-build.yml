@@ -19,7 +19,7 @@ pipelines:
           jobs:
             terraform:
               tasks:
-                - exec: { command: bash , arguments: [ "run.sh"] }
+                - exec: { command: echo, arguments: [ "run.sh"] }
 
       - PROD:
           fetch_materials: true
@@ -28,6 +28,6 @@ pipelines:
           jobs:
             terraform:
               tasks:
-                - exec: { command: bash , arguments: [ "run.sh"] }
+                - exec: { command: echo , arguments: [ "run.sh"] }
 
 
