@@ -17,9 +17,15 @@ pipelines:
           environment_variables: { env: dev, action: apply }
           approval: {type: manual}
           jobs:
-            terraform:
+            terraform-init:
               tasks:
-                - exec: { command: echo, arguments: [ "run.sh"] }
+                - exec: { command: echo, arguments: [ "terraform","init"] }
+            terraform-plan:
+              tasks:
+                - exec: { command: echo, arguments: [ "terraform","plan" ] }
+            terraform-apply:
+              tasks:
+                - exec: { command: echo, arguments: [ "terraform","apply" ] }
 
       - PROD:
           fetch_materials: true
