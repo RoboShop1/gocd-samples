@@ -5,7 +5,6 @@ pipelines:
     environments:
       - QA
     label_template: ${COUNT}
-    lock_behavior: none
     display_order: -1
     materials:
       git-a66247d:
@@ -16,6 +15,7 @@ pipelines:
     stages:
       - DEV:
           fetch_materials: true
+
           environment_variables: { env: dev, action: apply }
           approval: {type: manual}
           jobs:
@@ -35,6 +35,7 @@ pipelines:
 
       - PROD:
           fetch_materials: true
+
           approval: {type: manual, allow_only_on_success: true}
           environment_variables: { env: prod, action: apply }
           jobs:
