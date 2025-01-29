@@ -29,7 +29,7 @@ pipelines:
     display_order: -1
     materials:
       pipeline-A:
-        pipeline: pipeline-A
+        pipeline: pipelineA
         stage: DEV
         auto_update: true
     stages:
