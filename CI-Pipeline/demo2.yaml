@@ -1,6 +1,6 @@
 format_version: 10
 pipelines:
-  expense-create:
+  expense-create1:
     group: Terraform
     label_template: ${COUNT}
     lock_behavior: none
@@ -37,5 +37,3 @@ pipelines:
             terraform:
               tasks:
                 - exec: { command: echo , arguments: [ "run.sh"] }
-
-
