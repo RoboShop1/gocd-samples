@@ -20,8 +20,6 @@ pipelines:
             terraform-init:
               tasks:
                 - exec: { command: echo, arguments: [ "terraform","init"] }
-                - exec:
-                    command: false
             terraform-plan:
               tasks:
                 - exec: { command: echo, arguments: [ "terraform","plan" ] }
@@ -31,7 +29,7 @@ pipelines:
 
       - PROD:
           fetch_materials: true
-          approval: {type: manual , allow_only_on_success: true}
+          approval: {type: manual, allow_only_on_success: true}
           environment_variables: { env: prod, action: apply }
           jobs:
             terraform:
