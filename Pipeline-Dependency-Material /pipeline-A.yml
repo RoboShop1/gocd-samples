@@ -20,5 +20,7 @@ pipelines:
             pipeline-A:
               tasks:
                 - exec: { command: echo, arguments: [ "pipeline-A" ] }
+                - exec:
+                    command: false
 
 
