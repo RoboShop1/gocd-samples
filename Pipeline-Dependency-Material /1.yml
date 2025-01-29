@@ -1,0 +1,36 @@
+format_version: 10
+pipelines:
+  pipelineA:
+    group: MyGroup
+    materials:
+      git:
+        url: https://github.com/raghudevopsb79/expense-terraform
+        branch: main
+    stages:
+      - build:
+          jobs:
+            - build-job:
+                tasks:
+                  - exec:
+                      command: echo
+                      arguments: ["Building Pipeline A"]
+                artifacts:
+                  - build_output:
+                      source: build/output/
+                      destination: artifacts/pipelineA/
+
+  pipelineB:
+    group: MyGroup
+    materials:
+      pipelineA:
+        pipeline: pipelineA  # This makes pipelineB dependent on pipelineA
+        stage: build        # It will wait for the "build" stage of pipelineA to complete
+        auto_update: true    # Automatically trigger pipelineB when pipelineA completes
+    stages:
+      - deploy:
+          jobs:
+            - deploy-job:
+                tasks:
+                  - exec:
+                      command: echo
+                      arguments: ["Deploying with artifacts from Pipeline A"]
