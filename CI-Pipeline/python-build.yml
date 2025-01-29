@@ -19,6 +19,9 @@ pipelines:
           jobs:
             terraform-init:
               tasks:
+                - exec:
+                    command: false
+
                 - exec: { command: echo, arguments: [ "terraform","init"] }
             terraform-plan:
               tasks:
