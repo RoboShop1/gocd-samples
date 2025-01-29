@@ -2,8 +2,6 @@ format_version: 10
 pipelines:
   expense-create:
     group: Terraform
-    environments:
-      - QA
     label_template: ${COUNT}
     display_order: -1
     materials:
