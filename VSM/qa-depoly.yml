@@ -20,7 +20,7 @@ pipelines:
                 - exec: { command: echo, arguments: ["Deploying into Qa Env"] }
       - Testing:
           fetch_materials: true
-          environment_variables: { env:qa, action: apply }
+          environment_variables: { env: qa, action: apply }
           jobs:
             testing:
               tasks:
