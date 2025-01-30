@@ -1,0 +1,27 @@
+format_version: 10
+pipelines:
+  deploy-qa:
+    group: CD    # Group Name is IMP
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      pipelines:                         # We can give any name
+        pipeline: deploy-dev         # This has to be matched #
+        stage: sanityCheck             # Stage also matches from pipelineA
+        auto_update: true
+    stages:
+      - Deploy:
+          fetch_materials: true
+          environment_variables: { env: qa, action: apply }
+          jobs:
+            deploy:
+              tasks:
+                - exec: { command: echo, arguments: ["Deploying into Qa Env"] }
+      - Testing:
+          fetch_materials: true
+          environment_variables: { env:qa, action: apply }
+          jobs:
+            testing:
+              tasks:
+                - exec: { command: echo, arguments: [ "Performing QA Tests" ] }

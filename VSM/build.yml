@@ -1,0 +1,40 @@
+format_version: 10
+pipelines:
+  build-pipeline:
+    group: CI
+    label_template: ${COUNT}
+    display_order: -1
+    materials:
+      git-a66247d:
+        git: https://github.com/raghudevopsb79/expense-terraform
+        shallow_clone: true
+        auto_update: true
+        branch: main
+    stages:
+      - Build:
+          fetch_materials: true
+
+          environment_variables: { env: dev, action: apply }
+          approval: {type: manual}
+          jobs:
+            build:
+              tasks:
+                - exec: { command: echo, arguments: ["mvn","clean"] }
+                - exec: { command: echo, arguments: ["mvn","compile"] }
+      - Scan:
+          fetch_materials: true
+          approval: {type: success}
+          environment_variables: { env: prod, action: apply }
+          jobs:
+            job1:
+              tasks:
+                - exec: { command: echo , arguments: ["sonar scanning"] }
+      - Image-Build:
+          fetch_materials: true
+          approval: { type: success }
+          environment_variables: { env: prod, action: apply }
+          jobs:
+            job1:
+              tasks:
+                - exec: { command: echo , arguments: [ "Performing docker build -t repo/sample ." ] }
+                - exec: { command: echo , arguments: [ "Performing docker push -t repo/sample " ] }

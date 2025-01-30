@@ -1,0 +1,20 @@
+format_version: 10
+pipelines:
+  deploy-uat:
+    group: CD    # Group Name is IMP
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      pipelines:                         # We can give any name
+        pipeline: deploy-qa         # This has to be matched #
+        stage: Testing            # Stage also matches from pipelineA
+        auto_update: true
+    stages:
+      - Deploy:
+          fetch_materials: true
+          environment_variables: { env: uat, action: apply }
+          jobs:
+            deploy:
+              tasks:
+                - exec: { command: echo, arguments: ["Deploying into Uat Env"] }

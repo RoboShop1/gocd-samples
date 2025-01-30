@@ -1,0 +1,21 @@
+format_version: 10
+pipelines:
+  deploy-prod:
+    group: CD    # Group Name is IMP
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      pipelines:                         # We can give any name
+        pipeline: deploy-uat        # This has to be matched #
+        stage: Deploy            # Stage also matches from pipelineA
+        auto_update: true
+    stages:
+      - Deploy:
+          fetch_materials: true
+          approval: {type: manual, allow_only_on_success: true}
+          environment_variables: { env: prod, action: apply }
+          jobs:
+            deploy:
+              tasks:
+                - exec: { command: echo, arguments: ["Deploying into Prod Env"] }
