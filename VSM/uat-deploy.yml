@@ -18,4 +18,4 @@ pipelines:
             deploy:
               tasks:
                 - exec: { command: echo, arguments: ["Deploying into Uat Env"] }
-                - exec: false
+                - exec: { command: false }
