@@ -1,7 +1,7 @@
 format_version: 10
 pipelines:
   parallel-job:
-    group: Demo
+    group: Parallel
     label_template: ${COUNT}
     display_order: -1
     materials:
