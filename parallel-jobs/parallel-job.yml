@@ -1,7 +1,7 @@
 format_version: 10
 pipelines:
-  expense-create:
-    group: Terraform
+  parallel-job:
+    group: Demo
     label_template: ${COUNT}
     display_order: -1
     materials:
