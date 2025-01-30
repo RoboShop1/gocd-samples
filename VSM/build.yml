@@ -14,7 +14,6 @@ pipelines:
       - Build:
           fetch_materials: true
           environment_variables: { env: dev, action: apply }
-          approval: {type: manual}
           jobs:
             build:
               tasks:
