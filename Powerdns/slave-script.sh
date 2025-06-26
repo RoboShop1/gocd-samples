@@ -1,4 +1,4 @@
-nf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm -y
+dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm -y
 dnf install mariadb-server -y
 systemctl enable --now mariadb
 mysql_secure_installation --set-root-pass RoboShop@1
