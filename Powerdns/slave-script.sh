@@ -18,7 +18,7 @@ cp /etc/pdns/pdns.conf /etc/pdns/pdns.conf.backup
 
 
 echo '
-aunch=gmysql
+launch=gmysql
 gmysql-host=localhost
 gmysql-user=pdns
 gmysql-password=chaitu@123
