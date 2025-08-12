@@ -13,6 +13,7 @@ pipelines:
     stages:
       - DEV:
           fetch_materials: true
+          approval: {type: manual}
           environment_variables: { env: dev, action: apply }
           jobs:
             parallel-1:
