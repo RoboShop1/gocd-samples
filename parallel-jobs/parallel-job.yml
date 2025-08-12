@@ -10,6 +10,7 @@ pipelines:
         shallow_clone: true
         auto_update: true
         branch: main
+        destination: app
     stages:
       - DEV:
           fetch_materials: true
