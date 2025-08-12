@@ -22,7 +22,7 @@ pipelines:
               tasks:
                 - exec: { command: echo, arguments: ["task-1"] }
                 - exec: { command: bash, arguments: ["exit 1"] }
-                - exec: { command: echo, arguments: ["task-3"] }
+                - exec: { command: echo, arguments: ["task-3"], run_if: any }
 
             parallel-2:
               tasks:
