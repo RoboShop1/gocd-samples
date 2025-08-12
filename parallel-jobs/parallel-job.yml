@@ -14,7 +14,6 @@ pipelines:
       - DEV:
           fetch_materials: true
           clean_workspace: true
-          approval: {type: success}
           environment_variables: { env: dev, action: apply }
           jobs:
             parallel-1:
