@@ -21,18 +21,15 @@ pipelines:
                 - exec: { command: echo, arguments: ["task-1"] }
                 - exec: { command: echo, arguments: ["task-2"] }
                 - exec: { command: echo, arguments: ["task-3"] }
-                - exec: { command: sleep , arguments: ["30s"] }
 
             parallel-2:
               tasks:
                 - exec: { command: echo, arguments: ["task-1"] }
                 - exec: { command: echo, arguments: ["task-2"] }
-                - exec: { command: sleep , arguments: ["30s"] }
             parallel-3:
               tasks:
                 - exec: { command: echo, arguments: ["task-1"] }
                 - exec: { command: echo, arguments: ["task-2"] }
-                - exec: { command: sleep , arguments: [ "30s" ] }
 
       - PROD:
           fetch_materials: true
