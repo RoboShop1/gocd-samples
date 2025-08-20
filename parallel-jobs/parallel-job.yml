@@ -4,6 +4,7 @@ pipelines:
     group: Parallel
     label_template: ${COUNT}
     display_order: -1
+    environment_variables: { env: pipeline-level, action: apply }
     materials:
       git-a66247d:
         git: https://github.com/RoboShop1/System_commands.git
@@ -22,23 +23,11 @@ pipelines:
               tasks:
                 - exec: { command: echo, arguments: ["name=${env}"] }
                 - exec: { command: printenv}
-                
-
-            parallel-2:
-              tasks:
-                - exec: { command: echo, arguments: ["task-1"] }
-                - exec: { command: echo, arguments: ["task-2"] }
-            parallel-3:
-              tasks:
-                - exec: { command: echo, arguments: ["task-1"] }
-                - exec: { command: echo, arguments: ["task-2"] }
 
       - PROD:
           fetch_materials: true
-
           approval: {type: manual, allow_only_on_success: true}
-          environment_variables: { env: prod, action: apply }
           jobs:
             job1:
               tasks:
-                - exec: { command: echo , arguments: ["This is prod-env"] }
+               - exec: { command: printenv}
