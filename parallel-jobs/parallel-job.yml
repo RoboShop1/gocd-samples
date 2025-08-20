@@ -5,6 +5,8 @@ pipelines:
     label_template: ${COUNT}
     display_order: -1
     environment_variables: { env: pipeline-level, action: apply }
+    parameters:  
+      pipeline_param: value
     materials:
       git-a66247d:
         git: https://github.com/RoboShop1/System_commands.git
