@@ -27,6 +27,7 @@ pipelines:
       - PROD:
           fetch_materials: true
           approval: {type: manual, allow_only_on_success: true}
+          environment_variables: { env: stage-level, action: apply }
           jobs:
             job1:
               tasks:
