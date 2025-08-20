@@ -20,6 +20,7 @@ pipelines:
           environment_variables: { env: dev, action: apply }
           jobs:
             parallel-1:
+              environment_variables: { env: job-level, action: apply }
               tasks:
                 - exec: { command: echo, arguments: ["name=${env}"] }
                 - exec: { command: printenv}
