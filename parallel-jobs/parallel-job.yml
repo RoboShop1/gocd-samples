@@ -21,8 +21,8 @@ pipelines:
             parallel-1:
               tasks:
                 - exec: { command: echo, arguments: ["name=${env}"] }
-                - exec: { command: bash, arguments: ["exit 1"] }
-                - exec: { command: echo, arguments: ["task-3"], run_if: failed }
+                - exec: { command: printenv}
+                
 
             parallel-2:
               tasks:
