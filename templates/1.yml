@@ -1,26 +1,37 @@
 format_version: 10
 
 templates:
-  - name: basic-template
+  - name: deployment-template
     parameters:
-      - name: text_to_echo
+      - name: app_name
+      - name: deploy_env
     stages:
-      - name: run
+      - name: deploy
         jobs:
-          - name: echo-job
+          - name: deploy-job
             tasks:
               - exec:
                   command: echo
                   arguments:
-                    - "{{ text_to_echo }}"
+                    - "Deploying {{ app_name }} to {{ deploy_env }}"
 
 pipelines:
-  - name: pipeline-1
-    template: basic-template
+  - name: app-production
+    template: deployment-template
     parameters:
-      text_to_echo: "Hello from Pipeline 1"
+      app_name: "my-app"
+      deploy_env: "production"
 
-  - name: pipeline-2
-    template: basic-template
+  - name: app-staging
+    template: deployment-template
     parameters:
-      text_to_echo: "Hello from Pipeline 2"
+      app_name: "my-app"
+      deploy_env: "staging"
+
+environments:
+  - name: production
+    pipelines:
+      - app-production
+  - name: staging
+    pipelines:
+      - app-staging
