@@ -1,10 +1,12 @@
 format_version: 10
-
 pipelines:
   sample-echo-pipeline:
     group: demo
     materials:
       git:
-        url: https://github.com/RoboShop1/gocd-samples.git
-        branch: main
+        type: git
+        attributes:
+          url: "https://github.com/RoboShop1/gocd-samples.git"
+          branch: main
+          auto_update: true
     template: advanced-echo-template1
