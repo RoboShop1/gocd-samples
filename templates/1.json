@@ -1,0 +1,54 @@
+{
+  "name": "template",
+  "stages": [
+    {
+      "name": "defaultStage",
+      "fetch_materials": true,
+      "clean_working_directory": false,
+      "never_cleanup_artifacts": false,
+      "environment_variables": [],
+      "jobs": [
+        {
+          "name": "defaultJob",
+          "run_instance_count": null,
+          "elastic_profile_id": "elastic_profile_id",
+          "timeout": 0,
+          "environment_variables": [],
+          "resources": [],
+          "tasks": [
+            {
+              "type": "exec",
+              "attributes": {
+                "run_if": [
+                  "passed"
+                ],
+                "command": "ls",
+                "working_directory": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "s2",
+      "jobs": [
+        {
+          "name": "j2",
+          "tasks": [
+            {
+              "type": "fetch",
+              "attributes": {
+                "origin": "external",
+                "pipeline": "",
+                "stage": "defaultStage",
+                "job": "defaultJob",
+                "artifact_id": "docker-image"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
