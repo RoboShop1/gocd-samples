@@ -1,0 +1,7 @@
+format_version: 10
+pipelines:
+  - name: order-service
+    group: ecommerce
+    template: java-maven-template
+    parameters:
+      name: "chaitu"
