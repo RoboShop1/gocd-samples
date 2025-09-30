@@ -5,6 +5,6 @@ pipelines:
     group: demo
     materials:
       git:
-        url: https://github.com/example/repo.git
+        url: https://github.com/RoboShop1/gocd-samples.git
         branch: main
     template: advanced-echo-template
