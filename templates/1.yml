@@ -1,37 +1,10 @@
 format_version: 10
 
-templates:
-  deployment-template:
-    parameters:
-      - app_name
-      - deploy_env
-    stages:
-      - name: deploy
-        jobs:
-          - name: deploy-job
-            tasks:
-              - exec:
-                  command: echo
-                  arguments:
-                    - "Deploying {{ app_name }} to {{ deploy_env }}"
-
 pipelines:
-  app-production:
-    template: deployment-template
-    parameters:
-      app_name: "my-app"
-      deploy_env: "production"
-
-  app-staging:
-    template: deployment-template
-    parameters:
-      app_name: "my-app"
-      deploy_env: "staging"
-
-environments:
-  production:
-    pipelines:
-      - app-production
-  staging:
-    pipelines:
-      - app-staging
+  sample-echo-pipeline:
+    group: demo
+    materials:
+      git:
+        url: https://github.com/example/repo.git
+        branch: main
+    template: advanced-echo-template
