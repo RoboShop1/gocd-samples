@@ -1,0 +1,26 @@
+format_version: 10
+
+templates:
+  - name: basic-template
+    parameters:
+      - name: text_to_echo
+    stages:
+      - name: run
+        jobs:
+          - name: echo-job
+            tasks:
+              - exec:
+                  command: echo
+                  arguments:
+                    - "{{ text_to_echo }}"
+
+pipelines:
+  - name: pipeline-1
+    template: basic-template
+    parameters:
+      text_to_echo: "Hello from Pipeline 1"
+
+  - name: pipeline-2
+    template: basic-template
+    parameters:
+      text_to_echo: "Hello from Pipeline 2"

@@ -1,7 +1,0 @@
-format_version: 10
-
-pipelines:
-  - name: test-pipeline
-    template: simple-template
-    parameters:
-      message: "World"
