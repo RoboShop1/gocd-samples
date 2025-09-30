@@ -1,10 +1,7 @@
 format_version: 10
 
 pipelines:
-  - name: order-service
-    group: ecommerce
-    template: java-maven-template
+  - name: test-pipeline
+    template: simple-template
     parameters:
-      service_name: "order-service"
-      maven_goals: "clean compile"
-      docker_image: "maven:3.8-openjdk-11"
+      message: "World"
