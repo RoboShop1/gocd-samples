@@ -1,15 +1,36 @@
 format_version: 10
-pipelines:
-  - name: template-pipeline  # This becomes the template
-    template: true           # Mark as template
-    parameters:              # Define parameters
-      - name
+
+templates:
+  - name: java-maven-template
+    parameters:
+      - name: service_name
+      - name: maven_goals
+      - name: docker_image
     stages:
       - name: build
         jobs:
-          - name: build-job
+          - name: compile
             tasks:
               - exec:
                   command: bash
                   arguments:
-                    - echo $name
+                    - "echo"
+                    - "run"
+                    - "--rm"
+                    - "-v"
+                    - "$(pwd):/app"
+                    - "-w"
+                    - "/app"
+                    - "{{ docker_image }}"
+                    - "mvn"
+                    - "{{ maven_goals }}"
+
+# PIPELINES SECTION - Uses templates
+pipelines:
+  - name: order-service
+    group: ecommerce
+    template: java-maven-template    # ← Reference the template
+    parameters:
+      service_name: "order-service"
+      maven_goals: "clean compile"
+      docker_image: "maven:3.8-openjdk-11"
