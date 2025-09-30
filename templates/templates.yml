@@ -1,0 +1,20 @@
+format_version: 10
+
+templates:
+  - name: java-maven-template
+    parameters:
+      - name: service_name
+      - name: maven_goals
+      - name: docker_image
+    stages:
+      - name: build
+        jobs:
+          - name: compile
+            tasks:
+              - exec:
+                  command: bash
+                  arguments:
+                    - "-c"
+                    - |
+                      echo "Building {{ service_name }}"
+                      docker run --rm -v $(pwd):/app -w /app {{ docker_image }} mvn {{ maven_goals }}
