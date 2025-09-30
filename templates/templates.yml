@@ -12,3 +12,4 @@ templates:
               - exec:
                   command: echo
                   arguments:
+                    - "Hello {{ message }}"
