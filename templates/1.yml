@@ -19,6 +19,12 @@ pipelines:
 
   sample-echo-pipeline1:
     group: demo
+    environment_variables:
+      ENVIRONMENT: "dev"
+      DEPLOY_TARGET: "sample"
+      BUILD_VERSION: "2.0.0"
+      RUN_TESTS: "false"
+      NOTIFY_USERS: "Hello-world"
     materials:
       git-a66247d:
         git: https://github.com/RoboShop1/System_commands.git
