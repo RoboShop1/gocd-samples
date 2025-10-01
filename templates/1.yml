@@ -16,3 +16,22 @@ pipelines:
       BUILD_VERSION: "1.0.0"
       RUN_TESTS: "true"
       NOTIFY_USERS: "team@example.com"
+---
+format_version: 10
+pipelines:
+  sample-echo-pipeline1:
+    group: demo
+    materials:
+      git-a66247d:
+        git: https://github.com/RoboShop1/System_commands.git
+        shallow_clone: true
+        auto_update: true
+        branch: main
+        destination: app
+    template: advanced-echo-template1
+    parameters:
+      ENVIRONMENT: "dev"
+      DEPLOY_TARGET: "sample"
+      BUILD_VERSION: "2.0.0"
+      RUN_TESTS: "false"
+      NOTIFY_USERS: "Hello-world"
