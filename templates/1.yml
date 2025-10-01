@@ -10,3 +10,5 @@ pipelines:
         branch: main
         destination: app
     template: advanced-echo-template1
+    parameters:
+      NAME: "chaitu"
